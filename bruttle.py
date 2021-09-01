@@ -7,7 +7,7 @@ from hashlib import md5,sha1,sha224,sha256,sha384,sha512
 R, G, B, E = "\033[31m", "\033[32m", "\033[36m", "\033[0m"
 
 def ettup():
-	for passwd in passlist:
+	for passwd in lines:
 		try:
 			with pikepdf.open(filename, password = passwd) as pdfile:
 				pdfile.save('output.pdf')
