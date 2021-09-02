@@ -6,14 +6,17 @@ from hashlib import md5,sha1,sha224,sha256,sha384,sha512
 
 R, G, B, E = "\033[31m", "\033[32m", "\033[36m", "\033[0m"
 
+def prettify(s):
+	print(f"{G}--------------------------------------------")
+	print("          Found Password: -->  "+ s)
+	print("--------------------------------------------{E}")
+
 def ettup():
 	for passwd in lines:
 		try:
-			with pikepdf.open(filename, password = passwd) as pdfile:
+			with pikepdf.open(target, password = passwd) as pdfile:
 				pdfile.save('output.pdf')
-				print(f"{G}--------------------------------------------")
-				print("          Found Password: -->  "+ passwd)
-				print("--------------------------------------------")
+				prettify(passwd)
 				return
 
 		except pikepdf._qpdf.PasswordError:
@@ -23,18 +26,16 @@ def ettuh():
 	hashes = {"64": sha256, "32": md5, "128":sha512, "40": sha1, "96":sha384, "56": sha224}
 	for line in lines:
 		enc_wrd = line.encode()
-		hash_type = hashes.get(str(len(filename)), "Nil")
+		hash_type = hashes.get(str(len(target)), None)
 
-		if hash_type == "Nil":
+		if not hash_type:
 			print(f"{R}Hashtype not included in md5, sha1, sha224, sha256, sha384, sha512{E}")
 			return
 
 		digest = hash_type(enc_wrd).hexdigest().lower()
 
-		if digest == filename:
-			print(f"{G}---------------------------------------------------")
-			print(f"         Password Found! --> {line}               ")
-			print(f"---------------------------------------------------{E}")
+		if digest == target:
+			prettify(line)
 			break
 		else:
 			print(f"{R}trying : {line}")
@@ -42,11 +43,9 @@ def ettuh():
 def ettuz():
 	for password in lines:
 		try:
-			with zipfile.ZipFile(file=filename) as my_zip:
+			with zipfile.ZipFile(file=target) as my_zip:
 				my_zip.extractall('extracted', pwd=bytes(password.encode('utf-8').strip()))
-				print(f"{G}-----------------------------------------------")
-				print("       Password Found: --> " + password)
-				print("-----------------------------------------------")
+				prettify(password)
 				return
 		except:
 			print(f'{R}trying: ' + password)
@@ -56,9 +55,9 @@ def log(): print(f"Usage: python3 ettu_tools.py (zip|hash|pdf) filename/hash dic
 
 if __name__ == "__main__":
 	if len(sys.argv) < 3: log(); sys.exit()
-	option, filename, passlist = sys.argv[1:]
+	option, target, passlist = sys.argv[1:]
 
-	with open(passlist,'r') as f:
+	with open(passlist) as f:
 		lines = [password for password in f.read().split('\n') if password]
 
 	{"zip": ettuz, "hash": ettuh, "pdf": ettup}.get(option, log)()
