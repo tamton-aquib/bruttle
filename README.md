@@ -1,7 +1,7 @@
 
 # Bruttle
 
-A small script to bruteforce pdf, zip, and some known hashes.
+A small script to bruteforce pdf, zip, and some popular hashes.
 
 
 ### Usage:
