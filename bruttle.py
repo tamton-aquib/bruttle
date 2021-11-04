@@ -2,7 +2,6 @@
 import pikepdf, zipfile
 import sys, time
 from hashlib import md5,sha1,sha224,sha256,sha384,sha512
-# NOTE: these functions were taken from https://github.com/taj0023 (which is me btw)
 
 R, G, B, E = "\033[31m", "\033[32m", "\033[36m", "\033[0m"
 
