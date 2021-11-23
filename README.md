@@ -1,15 +1,19 @@
 
 # Bruttle
 
-A small script to bruteforce pdf, zip, and some popular hashes.
+A small script to bruteforce pdf, zip, and some popular hashes. <br />
+You can find the rust version of this script [here](https://github.com/tamton-aquib/veldora).
 
 
-### Usage:
+### Installation:
 ```bash
 git clone https://github.com/tamton-aquib/bruttle.git
 cd bruttle
 pip3 install -r requirements.txt
+```
 
+### Usage:
+```bash
 python3 bruttle.py (zip|hash|pdf) <file> <wordlist>
 ```
 
