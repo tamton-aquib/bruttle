@@ -7,14 +7,15 @@ You can find the improved rust version of this script [here](https://github.com/
 
 ### Installation:
 ```bash
-git clone https://github.com/tamton-aquib/bruttle.git
-cd bruttle
-pip3 install -r requirements.txt
+pip3 install bruttle
 ```
 
 ### Usage:
 ```bash
-python3 bruttle.py <file/hash> <wordlist>
+bruttle <file/hash> <wordlist>
+# Example
+bruttle ~/test/test.zip /opt/password_list.txt
+bruttle "482c811da5d5b4bc6d497ffa98491e38" /opt/password_list.txt
 ```
 
 ### Features:
