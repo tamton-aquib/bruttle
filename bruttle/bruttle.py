@@ -7,17 +7,18 @@ from os import path
 
 R, G, B, E = "\033[31m", "\033[32m", "\033[36m", "\033[0m"
 
-def prettify(s): print(f"{G}{'-'*45}\n{' '*10}Found Password: -->  {s}\n{'-'*45}{E}")
+def prettify(s):
+    print(f"{G}{'-'*45}\n{' '*10}Found Password: -->  {s}\n{'-'*45}{E}")
 
 def ettup(target, lines):
     with tqdm(total=len(lines), colour="#986fec") as bar:
         bar.set_description(" Bruteforcing")
-        for passwd in lines:
+        for password in lines:
             try:
-                with pikepdf.open(target, password=passwd) as pdfile:
+                with pikepdf.open(target, password=password) as pdfile:
                     pdfile.save('output.pdf')
                     bar.close()
-                    prettify(passwd)
+                    prettify(password)
                     return
 
             except pikepdf._qpdf.PasswordError:
@@ -28,25 +29,25 @@ def ettuh(target, lines):
 
     with tqdm(total=len(lines), colour="#986fec") as bar:
         bar.set_description(" Bruteforcing")
-        for passwd in lines:
+        for password in lines:
             hash_type = hashes.get(str(len(target)), None)
 
             if not hash_type:
                 print(f"{R}Hashtype not included in md5, sha1, sha224, sha256, sha384, sha512{E}")
                 return
 
-            digest = hash_type(passwd.encode()).hexdigest().lower()
-            prettify(passwd) if digest == target else bar.update()
+            digest = hash_type(password.encode()).hexdigest().lower()
+            prettify(password) if digest == target else bar.update()
 
 def ettuz(target, lines):
     with tqdm(total=len(lines), colour="#986fec") as bar:
         bar.set_description(" Bruteforcing")
-        for passwd in lines:
+        for password in lines:
             try:
                 with zipfile.ZipFile(file=target) as my_zip:
-                    my_zip.extractall('extracted', pwd=bytes(passwd.encode().strip()))
+                    my_zip.extractall('extracted', pwd=bytes(password.encode().strip()))
                     bar.close()
-                    prettify(passwd)
+                    prettify(password)
                     return
             except:
                 time.sleep(0.0001)
@@ -60,7 +61,7 @@ def main():
     _, extension = path.splitext(target)
 
     with open(passlist) as f:
-        lines = [passwd for passwd in f.read().split('\n') if passwd]
+        lines = [password for password in f.read().split('\n') if password]
 
     { ".zip": ettuz, "": ettuh, ".pdf": ettup }.get(extension, log)(target, lines)
 
