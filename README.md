@@ -2,7 +2,7 @@
 # Bruttle
 
 A small script to bruteforce pdf, zip, and some popular hashes. <br />
-You can find the improved rust version of this script [here](https://github.com/tamton-aquib/veldora).
+You can find the fast and multithreaded rust version of this program [here](https://github.com/tamton-aquib/veldora).
 
 
 ### Installation:
@@ -25,7 +25,6 @@ bruttle "482c811da5d5b4bc6d497ffa98491e38" /opt/password_list.txt
 - Automatic filetype and/or hash detection.
 
 ### Showcase:
-<!-- ![noice](https://user-images.githubusercontent.com/77913442/131712946-5aa50471-5b94-4f0c-97ff-08928c9e0316.gif) -->
 ![noice](https://user-images.githubusercontent.com/77913442/158861560-16e60fdf-dab9-4c4d-8501-e549f605dbdf.gif)
 
 ### Notes:
