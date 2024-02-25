@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "bruttle"
-version = "0.0.8"
+version = "1.0.0"
 authors = ["Aquib <aquibjavedt007@gmail.com>"]
 description = "A cli app to bruteforce pdf, zip, and some common hashes"
 homepage = "https://github.com/tamton-aquib/bruttle"
