@@ -3,8 +3,6 @@ name: Release Bruttle
 
 on:
   push:
-    tags:
-      - v[0-9]+.*
 
 permissions:
   contents: read
@@ -32,6 +30,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Build and Publish with poetry
+      if: github.ref == 'refs/tags/*'
       env:
           PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
           PYPI_USERNAME : ${{ secrets.PYPI_USERNAME }}  
