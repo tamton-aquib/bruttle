@@ -37,5 +37,4 @@ jobs:
           PYPI_USERNAME : ${{ secrets.PYPI_USERNAME }}  
       run: |
         poetry build
-        poetry publish --no-verify
-        
+        poetry publish
