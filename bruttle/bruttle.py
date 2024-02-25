@@ -21,7 +21,7 @@ def ettup(target, lines):
                     prettify(password)
                     return
 
-            except pikepdf._qpdf.PasswordError:
+            except pikepdf.PasswordError:
                 bar.update()
 
 def ettuh(target, lines):
