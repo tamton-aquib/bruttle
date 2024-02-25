@@ -33,7 +33,7 @@ jobs:
         poetry run flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Build and Publish with poetry
       env:
-          PYPI_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
           PYPI_USERNAME : ${{ secrets.PYPI_USERNAME }}  
       run: |
         poetry build
